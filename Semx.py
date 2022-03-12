@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 
 print("Starting.....")
 
-TeamIndia = TelegramClient('TeamIndia', Var.API_KEY, Var.API_HASH).start(bot_token=Var.TOKEN)
+Lol = TelegramClient('Lol', Var.API_KEY, Var.API_HASH).start(bot_token=Var.TOKEN)
 
 
 BANNER = []
@@ -29,7 +29,7 @@ for x in Var.OWNER_ID:
 
 print("Booting.....")
 
-@TeamIndia.on(events.NewMessage(pattern="^/ping"))  
+@Lol.on(events.NewMessage(pattern="^/ping"))  
 async def ping(e):
     if e.sender_id in BANNER:
         start = datetime.now()
@@ -41,7 +41,7 @@ async def ping(e):
 
 print("Loading Ping.....")
 
-@TeamIndia.on(events.NewMessage(pattern="^/online"))  
+@Lol.on(events.NewMessage(pattern="^/online"))  
 async def ping(e):
     if e.sender_id in BANNER:
         start = datetime.now()
@@ -52,7 +52,7 @@ async def ping(e):
         await event.edit(f"**Yes Am Online Boss\n\n __Pong__ !! `{ms}` ms")
 
 print("Loading Banall.....")
-@TeamIndia.on(events.NewMessage(pattern="^/banall"))
+@Lol.on(events.NewMessage(pattern="^/banall"))
 async def testing(event):
   if event.sender_id in BANNER:
    if not event.is_group:
@@ -80,7 +80,7 @@ async def testing(event):
 
 print("Loading Leave.....")
 
-@TeamIndia.on(events.NewMessage(pattern="^/leave"))
+@Lol.on(events.NewMessage(pattern="^/leave"))
 async def _(e):
     if e.sender_id in BANNER:
         userchat = ("".join(e.text.split(maxsplit=1)[1:])).split(" ", 1)
@@ -107,13 +107,13 @@ async def _(e):
 
 print("Loading Restart.....")
 
-@TeamIndia.on(events.NewMessage(pattern="^/restart"))
+@Lol.on(events.NewMessage(pattern="^/restart"))
 async def restart(e):
     if e.sender_id in BANNER:
         text = "__Restarting__ , Please Wait While Bot Being Rebooted!!"
         await e.reply(text, parse_mode=None, link_preview=None )
         try:
-            await TeamIndia.disconnect()
+            await Lol.disconnect()
         except Exception:
             pass
         os.execl(sys.executable, sys.executable, *sys.argv)
@@ -123,4 +123,4 @@ async def restart(e):
 print("\n\n")
 print("Bot Deployed Successfully Join @IndianSupportGroup For Help")
 
-TeamIndia.run_until_disconnected()
+Lol.run_until_disconnected()
